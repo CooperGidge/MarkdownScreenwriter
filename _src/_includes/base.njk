@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title or metadata.title }}</title>
+    <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="stylesheet" href="/assets/css/interface.css">
+    <script src="/assets/js/paged.js"></script>
+</head>
+<body>
+
+    <div class="data" data-title="{{ title or metadata.title }}"></div>
+
+    <div class="title-page">
+        <div class="title-page-center">
+            <div class="title">{{ title or metadata.title }}</div>
+            <div>Written by</div>
+            <div>{{ author or metadata.author }}</div>
+        </div>
+        <div class="title-page-footer">
+            © {{ year or metadata.year }} {{ owner or author or metadata.owner or metadata.author }}
+        </div>
+    </div>
+
+    <div class="main-script">
+        {{ content | safe }}
+    </div>
+    
+</body>
+</html>

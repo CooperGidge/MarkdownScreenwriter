@@ -1,0 +1,135 @@
+:root {
+    --gap: 20px;
+    --scene-number-gap: -0.5in;
+    --indent-gap: 1in;
+    --font-size: 18px;
+    --line-height: 1.5;
+    --font-family: monospace;
+}
+
+html, body {
+    line-height: var(--line-height);
+    font-size: var(--font-size);
+    font-family: var(--font-family);
+    counter-reset: scene;
+}
+
+.data {
+    string-set: name attr(data-title);
+    display: none;
+}
+
+@page {
+    size: 8.5in 11in;
+    margin: var(--indent-gap) var(--indent-gap);
+}
+
+@page {
+    @top-right {
+        content: counter(page) ".";
+        font-size: 1rem;
+        line-height: var(--line-height);
+    }
+    @top-left {
+        content: string(name);
+        font-size: 1rem;
+        line-height: var(--line-height);
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 1rem;
+    font-weight: normal;
+    text-align: right;
+    text-transform: uppercase;
+    margin-bottom: var(--gap);
+}
+
+h2 {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: var(--gap);
+    counter-increment: scene;
+    position: relative;
+}
+
+h2::before {
+    content: counter(scene) " ";
+    position: absolute;
+    left: var(--scene-number-gap);
+    top: 0;
+}
+
+h2::after {
+    content: counter(scene) " ";
+    position: absolute;
+    right: var(--scene-number-gap);
+    top: 0;
+}
+
+h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: var(--gap);
+}
+
+h4 {
+    font-size: 1rem;
+    font-weight: normal;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    margin: 0 calc(2 * var(--indent-gap));
+}
+
+h5 {
+    font-size: 1rem;
+    font-weight: normal;
+    margin-bottom: 0;
+    margin: 0 calc(1.5 * var(--indent-gap));
+}
+
+blockquote {
+    margin: 0 var(--indent-gap);
+}
+
+p {
+    margin-bottom: var(--gap);
+}
+
+.main-script {
+    break-before: page;
+}
+
+.title-page {
+    height: calc(11in - (2 * var(--indent-gap)));
+    width: calc(8.5in - (2 * var(--indent-gap)));
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.title-page-center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 50%;
+}
+
+.title-page-center .title {
+    text-decoration: underline;
+    text-transform: uppercase;
+    margin-bottom: var(--gap);
+    text-underline-position: under;
+}
+
+.title-page-footer {
+    margin-top: auto;
+}
